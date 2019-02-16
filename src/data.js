@@ -20,7 +20,7 @@ function randomDate(start, end) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
-for (let i = 1; i <= 5000; i++) {
+for (let i = 1; i <= 2000; i++) {
   mock.push({
     name: "User " + i,
     country: countryList[Math.floor(Math.random() * countryList.length)],
