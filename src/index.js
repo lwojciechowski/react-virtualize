@@ -5,30 +5,17 @@ import useUserCrawling from "./useUserCrawling";
 import "./styles.css";
 
 function useVirtualize(data, h) {
-  let [offset, setOffset] = useState(0);
-  let start = Math.floor(offset / h);
-
-  return [
-    data.slice(start, start + 20), // data to display
-    offset => {
-      // offset setter
-      setOffset(Math.max(0, offset));
-    },
-    { height: `${data.length * h}px`, paddingTop: `${start * h}px` } // container styles
-  ];
 }
 
 function List({ initialData }) {
-  let [data, setOffset, containerStyle] = useVirtualize(initialData, 30);
-
+  const data = useUserCrawling(initialData);
   const handleScroll = e => {
-    setOffset(e.target.scrollTop);
   };
 
   return (
     <div className="App">
       <div className="wrapper" onScroll={handleScroll}>
-        <div className="container" style={containerStyle}>
+        <div className="container">
           {data.map(i => (
             <div key={i.name} className="row">
               <img src={i.avatar} />
