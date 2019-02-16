@@ -1,0 +1,26 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.wrapper {
+  border:1px solid #aaa;
+  border-radius: 5px;
+
+  height: 500px;
+  overflow: scroll;
+}
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+
+}
+
+.container td {
+  border-bottom: 1px solid #eee;
+}
+
+.row {
+  height: 30px;
+}
