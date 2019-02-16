@@ -1,37 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import mock from "./data.generated.json";
 import useUserCrawling from "./useUserCrawling";
 import "./styles.css";
 
-function useVirtualize(data, h) {}
+function useVirtualize(data, h) {
+  let [offset, setOffset] = useState(0);
+  let start = Math.floor(offset / h);
+
+  return [
+    data.slice(start, start + 20), // data to display
+    offset => {
+      // offset setter
+      setOffset(Math.max(0, offset));
+    },
+    { height: `${data.length * h}px`, paddingTop: `${start * h}px` } // container styles
+  ];
+}
 
 function List({ initialData }) {
-  const handleScroll = e => {};
+  let [data, setOffset, containerStyle] = useVirtualize(initialData, 30);
+
+  const handleScroll = e => {
+    setOffset(e.target.scrollTop);
+  };
 
   return (
     <div className="App">
       <div className="wrapper" onScroll={handleScroll}>
-        <table className="container">
-          <thead>
-            <tr>
-              <th />
-              <th>Name</th>
-              <th>Country</th>
-              <th>Last seen</th>
-            </tr>
-          </thead>
-          {initialData.map(i => (
-            <tr key={i.number} className="row">
-              <td>
-                <img src={i.avatar} />
-              </td>
-              <td>{i.name}</td>
-              <td>{i.country}</td>
-              <td>{i.lastSeen}</td>
-            </tr>
+        <div className="container" style={containerStyle}>
+          {data.map(i => (
+            <div key={i.name} className="row">
+              <img src={i.avatar} />
+              <span>{i.name}</span>
+              <span>{i.country}</span>
+              <span>{i.lastSeen}</span>
+            </div>
           ))}
-        </table>
+        </div>
       </div>
     </div>
   );

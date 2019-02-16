@@ -17,10 +17,14 @@
 
 }
 
-.container td {
-  border-bottom: 1px solid #eee;
+.container .row {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+
 }
 
-.row {
-  height: 30px;
+.container span {
+  flex: 1;
+  border-bottom: 1px solid #eee;
 }
