@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import ReactDOM from "react-dom";
 import mock from "./data.generated.json";
 import useUserCrawling from "./useUserCrawling";
@@ -7,6 +7,7 @@ import "./styles.css";
 function useVirtualize(data, h) {
   let [offset, setOffset] = useState(0);
   let start = Math.floor(offset / h);
+  const containerStyle = useMemo(() => ({ height: `${data.length * h}px`, paddingTop: `${start * h}px` }), [offset])
 
   return [
     data.slice(start, start + 20), // data to display
@@ -14,7 +15,7 @@ function useVirtualize(data, h) {
       // offset setter
       setOffset(Math.max(0, offset));
     },
-    { height: `${data.length * h}px`, paddingTop: `${start * h}px` } // container styles
+     containerStyle
   ];
 }
 
