@@ -20,7 +20,7 @@ function useVirtualize(data, h) {
 }
 
 function List({ initialData }) {
-  let [data, setOffset, containerStyle] = useVirtualize(useUserCrawling(initialData), 30);
+  let [data, setOffset, containerStyle] = useVirtualize(initialData, 30);
 
   const handleScroll = e => {
     setOffset(e.target.scrollTop);
