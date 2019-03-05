@@ -8,7 +8,7 @@ function useVirtualize(data, h) {
 }
 
 function List({ initialData }) {
-  const data = useUserCrawling(initialData);
+  const data = initialData;
   const handleScroll = e => {
   };
 
