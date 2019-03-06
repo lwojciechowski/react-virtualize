@@ -5,7 +5,7 @@ export default function useUserCrawling(initialData) {
   useEffect(() => {
     let lastSeenTimer = setInterval(() => {
       const index = Math.floor(Math.random() * 10000);
-      setData(data => {
+      setData(data =>
         data.map((u, i) =>
           i === index
             ? {
@@ -14,7 +14,7 @@ export default function useUserCrawling(initialData) {
               }
             : u
         )
-      });
+      );
     }, 50);
 
     let switchTimer = setInterval(() => {
