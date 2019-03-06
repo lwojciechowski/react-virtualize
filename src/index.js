@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import mock from "./data.generated.json";
 import useUserCrawling from "./useUserCrawling";
 import "./styles.css";
-
-function useVirtualize(data, h) {
-}
 
 function List({ initialData }) {
   const data = initialData;
@@ -18,7 +15,7 @@ function List({ initialData }) {
         <div className="container">
           {data.map(i => (
             <div key={i.name} className="row">
-              <img src={i.avatar} />
+              <img src={i.avatar} alt={i.name} />
               <span>{i.name}</span>
               <span>{i.country}</span>
               <span>{i.lastSeen}</span>
